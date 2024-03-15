@@ -1,0 +1,149 @@
+// styles.scss
+
+// Variables
+$primary-color: #333;
+$accent-color: #2196F3;
+$background-color: #f88;
+$dark-background-color: #111;
+$card-background-color: #ffffff;
+$card-shadow-color: rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin button-styles {
+    background-color: $accent-color;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken($accent-color, 10%);
+    }
+}
+
+// General styles
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $background-color;
+    transition: background-color 0.3s ease;
+
+    &.dark-mode {
+        background-color: $dark-background-color;
+    }
+}
+
+header {
+    background-color: $primary-color;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+    }
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+    }
+
+    input:checked + .slider {
+        background-color: $accent-color;
+
+        &:before {
+            transform: translateX(26px);
+        }
+    }
+
+    .slider.round {
+        border-radius: 34px;
+    }
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.card {
+    width: 300px;
+    background-color: $card-background-color;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px $card-shadow-color;
+    border-radius: 8px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 20px;
+
+        h2 {
+            margin-top: 0;
+        }
+    }
+}
+
+.cart {
+    background-color: $card-background-color;
+    padding: 20px;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px $card-shadow-color;
+    border-radius: 8px;
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+// Apply button styles using mixin
+button {
+    @include button-styles;
+}
